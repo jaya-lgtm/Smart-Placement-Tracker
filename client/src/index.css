@@ -1,0 +1,110 @@
+@import "tailwindcss";
+
+@theme {
+  --color-dark-950: #05070c;
+  --color-dark-900: #0b0f19;
+  --color-dark-800: #111827;
+  --color-dark-750: #1c2535;
+  --color-dark-700: #1f2937;
+  --color-dark-600: #374151;
+
+  --color-brand-50: #eef2ff;
+  --color-brand-100: #e0e7ff;
+  --color-brand-200: #c7d2fe;
+  --color-brand-300: #a5b4fc;
+  --color-brand-400: #818cf8;
+  --color-brand-500: #6366f1;
+  --color-brand-600: #4f46e5;
+  --color-brand-700: #4338ca;
+  --color-brand-800: #3730a3;
+  --color-brand-900: #312e81;
+
+  --color-accent-emerald: #10b981;
+  --color-accent-amber: #f59e0b;
+  --color-accent-rose: #ef4444;
+  --color-accent-indigo: #6366f1;
+
+  --shadow-glow: 0 0 20px rgba(99, 102, 241, 0.15);
+  --shadow-glow-green: 0 0 20px rgba(16, 185, 129, 0.2);
+  --shadow-glow-orange: 0 0 20px rgba(245, 158, 11, 0.2);
+  --shadow-glow-red: 0 0 20px rgba(239, 68, 68, 0.2);
+}
+
+@layer base {
+  body {
+    font-family: 'Outfit', 'Inter', sans-serif;
+    @apply bg-dark-950 text-slate-100 antialiased;
+  }
+}
+
+/* Custom Scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  @apply bg-dark-950;
+}
+::-webkit-scrollbar-thumb {
+  @apply bg-dark-700 rounded-full hover:bg-dark-600 transition-colors;
+}
+
+/* Premium Glassmorphism & Cards */
+.glass-card {
+  @apply bg-dark-900/60 backdrop-blur-md border border-dark-700/60 shadow-lg rounded-xl transition-all duration-300;
+}
+
+.glass-card-hover:hover {
+  @apply border-brand-500/30 shadow-glow bg-dark-900/80;
+}
+
+.glass-panel {
+  @apply bg-dark-900/40 backdrop-blur-lg border border-dark-700/30 rounded-2xl;
+}
+
+/* Gradient Borders */
+.gradient-border-brand {
+  position: relative;
+}
+.gradient-border-brand::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(to bottom right, #6366f1, #4f46e5, transparent);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+/* Animation utilities */
+@keyframes pulseGlow {
+  0%, 100% { opacity: 0.6; }
+  50% { opacity: 1; filter: drop-shadow(0 0 10px rgba(99, 102, 241, 0.6)); }
+}
+
+.animate-pulse-glow {
+  animation: pulseGlow 2s infinite ease-in-out;
+}
+
+/* Toast custom theme integration */
+.Toastify__toast {
+  @apply !bg-dark-900 !text-slate-100 !border !border-dark-700 !rounded-xl !font-sans;
+}
+.Toastify__toast--success {
+  @apply !border-accent-emerald/50;
+}
+.Toastify__toast--error {
+  @apply !border-accent-rose/50;
+}
+.Toastify__toast--info {
+  @apply !border-brand-500/50;
+}
+.Toastify__toast--warning {
+  @apply !border-accent-amber/50;
+}
+.Toastify__close-button {
+  @apply !text-slate-400;
+}
